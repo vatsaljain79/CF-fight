@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000", // backend
+  baseURL: "https://cf-fight.onrender.com",
 });
 
 export async function createRoom(payload) {
