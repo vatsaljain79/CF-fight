@@ -1,21 +1,22 @@
-import { Routes, Route, Link } from "react-router-dom";
-import HomePage from "./pages/HomePage.jsx";
-import RoomPage from "./pages/RoomPage.jsx";
+// src/App.jsx
+import Navbar from "./components/Navbar";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import RoomPage from "./pages/RoomPage";
+import SoloPage from "./pages/SoloPage";
 
 export default function App() {
   return (
-    <div className="app">
-      <header className="app-header">
-        <Link to="/" className="logo">
-          CF Fight
-        </Link>
-      </header>
-      <main className="app-main">
+    <>
+      <Navbar />
+
+      <div style={{ paddingTop: "70px" }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/room/:code" element={<RoomPage />} />
+          <Route path="/solo" element={<SoloPage />} />
         </Routes>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }

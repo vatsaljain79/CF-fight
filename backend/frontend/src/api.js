@@ -1,7 +1,11 @@
 import axios from "axios";
 
+// const api = axios.create({
+//   baseURL: "https://cf-fight.onrender.com",
+// });
+
 const api = axios.create({
-  baseURL: "https://cf-fight.onrender.com",
+  baseURL: "http://localhost:4000",
 });
 
 export async function createRoom(payload) {
@@ -28,3 +32,14 @@ export async function getRoomStatus(roomCode) {
   const res = await api.get(`/api/room/${roomCode}/status`);
   return res.data;
 }
+
+export async function createSoloSet(payload) {
+  const res = await api.post("/api/solo-set", payload);
+  return res.data;
+}
+
+export async function refreshSolo(sessionId) {
+  const res = await api.post("/api/solo-refresh", { sessionId });
+  return res.data;
+}
+
