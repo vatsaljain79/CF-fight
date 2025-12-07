@@ -309,6 +309,21 @@ export default function RoomPage() {
   };
 
   return (
+    <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      width: "100%",
+      paddingTop: "30px",
+    }}
+  >
+    <div
+      style={{
+        width: "100%",
+        maxWidth: "900px",
+        padding: "0 20px",
+      }}
+    >
     <div className="card">
       {loading ? (
         <p>Loading room...</p>
@@ -678,5 +693,7 @@ export default function RoomPage() {
         </>
       )}
     </div>
+     </div>
+  </div>
   );
 }

@@ -121,6 +121,21 @@ export default function SoloPage() {
   };
 
   return (
+      <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      width: "100%",
+      paddingTop: "30px",
+    }}
+  >
+    <div
+      style={{
+        width: "100%",
+        maxWidth: "900px",
+        padding: "0 20px",
+      }}
+    >
     <div className="card">
       <h1>Solo Practice</h1>
       <p className="small">
@@ -244,6 +259,8 @@ export default function SoloPage() {
           ← Back to home
         </Link>
       </div>
+    </div>
+    </div>
     </div>
   );
 }
