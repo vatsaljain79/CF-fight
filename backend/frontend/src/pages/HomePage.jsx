@@ -72,7 +72,7 @@ export default function HomePage() {
     <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", maxWidth: "1100px" }}>
       {/* Create room card */}
       <div className="card" style={{ flex: 1, minWidth: "320px" }}>
-        <h1>Create a CF Fight</h1>
+        <h1>Create a CodeForces Fight</h1>
         <p className="small">
           Enter two Codeforces handles. We&apos;ll generate unsolved problems for a fair fight.
         </p>
