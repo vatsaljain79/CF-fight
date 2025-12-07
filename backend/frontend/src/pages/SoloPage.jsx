@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
-import { refreshSolo } from "../api";
+import { refreshSolo, createSoloSet } from "../api";
 
 export default function SoloPage() {
   const location = useLocation();
@@ -9,12 +9,13 @@ export default function SoloPage() {
 
   const [solo, setSolo] = useState(initial || null);
   const [loadingRefresh, setLoadingRefresh] = useState(false);
+  const [loadingRematch, setLoadingRematch] = useState(false);
   const [error, setError] = useState("");
   const [elapsedSec, setElapsedSec] = useState(0);
   const [autoRefresh, setAutoRefresh] = useState(true);
   const autoRefreshMs = 10000;
 
-  // If user directly opens /solo without state
+  // If user opens /solo directly with no state
   if (!solo) {
     return (
       <div className="card">
@@ -27,8 +28,18 @@ export default function SoloPage() {
     );
   }
 
-  const { sessionId, handle, ratingMin, ratingMax, numProblems, includeTags, excludeTags, startTime, problems, solves } =
-    solo;
+  const {
+    sessionId,
+    handle,
+    ratingMin,
+    ratingMax,
+    numProblems,
+    includeTags,
+    excludeTags,
+    startTime,
+    problems,
+    solves,
+  } = solo;
 
   const formatTime = (sec) => {
     if (sec == null) return "-";
@@ -95,7 +106,7 @@ export default function SoloPage() {
     return () => clearInterval(id);
   }, [startTime]);
 
-  // Auto refresh effect
+  // Auto-refresh effect
   useEffect(() => {
     if (!autoRefresh) return;
     const id = setInterval(() => {
@@ -104,38 +115,54 @@ export default function SoloPage() {
     return () => clearInterval(id);
   }, [autoRefresh, handleRefresh]);
 
-  // Rematch: reuse same settings
+  // 🔁 New solo set with same settings (stay on this page)
   const handleRematch = async () => {
-    navigate("/", {
-      state: {
-        soloRematch: {
-          handle,
-          ratingMin,
-          ratingMax,
-          numProblems,
-          includeTags,
-          excludeTags,
-        },
-      },
-    });
+    setError("");
+    setLoadingRematch(true);
+    try {
+      const payload = {
+        handle,
+        ratingMin,
+        ratingMax,
+        numProblems,
+        includeTags,
+        excludeTags,
+      };
+      const newSet = await createSoloSet(payload);
+      setSolo(newSet);      // replace entire session
+      setElapsedSec(0);     // reset local timer
+      // autoRefresh + effects will re-run because startTime/sessionId changed
+    } catch (e) {
+      setError("Failed to create new solo set.");
+    } finally {
+      setLoadingRematch(false);
+    }
   };
 
   return (
-      <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      width: "100%",
-      paddingTop: "30px",
-    }}
-  >
-    <div
+
+     <div
       style={{
+        display: "flex",
+        justifyContent: "center",
         width: "100%",
-        maxWidth: "900px",
-        padding: "0 20px",
+        paddingTop: "30px",
       }}
     >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "1100px",
+          padding: "0 20px",
+          display: "flex",
+          gap: "1.75rem",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "flex-start",
+        }}
+      >
+
+
     <div className="card">
       <h1>Solo Practice</h1>
       <p className="small">
@@ -188,9 +215,10 @@ export default function SoloPage() {
         <button
           className="btn-secondary"
           onClick={handleRematch}
+          disabled={loadingRematch}
           style={{ marginLeft: "auto" }}
         >
-          New solo set (rematch)
+          {loadingRematch ? "Generating new set..." : "New solo set"}
         </button>
       </div>
 
@@ -234,11 +262,11 @@ export default function SoloPage() {
                     Open on CF
                   </a>
                 </div>
-                {/* {p.tags && p.tags.length > 0 && (
+                {p.tags && p.tags.length > 0 && (
                   <div className="small" style={{ marginTop: "0.2rem" }}>
                     Tags: {p.tags.join(", ")}
                   </div>
-                )} */}
+                )}
               </div>
               <div style={{ textAlign: "right", fontSize: "0.8rem" }}>
                 {s ? (
@@ -260,7 +288,7 @@ export default function SoloPage() {
         </Link>
       </div>
     </div>
-    </div>
+      </div>
     </div>
   );
 }
