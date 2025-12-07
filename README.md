@@ -4,11 +4,16 @@
 CF Fight is an interactive web platform that lets competitive programmers **duel each other on unsolved Codeforces problems** — or train in a **smart solo mode**.  
 The system generates **fair**, **balanced**, and **unsolved** problems for each player based on rating range and tags.
 
+<img width="1918" height="957" alt="Home_Page" src="https://github.com/user-attachments/assets/020a5e42-c7bd-479f-b367-15c6d2bc3fea" />
+
+
+
 Built with ❤️ by **[Vatsal Jain](https://www.linkedin.com/in/vatsaljain79/)**
 
 ---
-
 ## 🚀 Features
+
+<img width="1495" height="845" alt="Dual_Fight" src="https://github.com/user-attachments/assets/1ea0ff3a-aed5-49c8-9bca-781bd7fdc977" />
 
 ### 🔥 1. Codeforces Duel Mode (1v1 Battle)
 
@@ -73,6 +78,7 @@ Tie-breaker in all modes:
 ➡️ **Lower total time (sum of solve times) wins.**
 
 ---
+<img width="1371" height="825" alt="Solo" src="https://github.com/user-attachments/assets/49cea8d7-6f31-482f-82a9-a470c5d42802" />
 
 ## 🎯 4. Solo Practice Mode
 
