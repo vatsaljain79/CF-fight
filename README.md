@@ -1,7 +1,7 @@
 # ⚔️ CF Fight — Codeforces Duel & Solo Practice Arena  
 ### Live at: https://cf-fight.vercel.app/
 
-CF Fight is an interactive web platform that lets competitive programmers **duel each other on unsolved Codeforces problems** — or train in a **smart solo mode**.  
+CF Fight is an interactive web platform that lets competitive programmers **duel each other on unsolved Codeforces problems** - or train in a **smart solo mode**.  
 The system generates **fair**, **balanced**, and **unsolved** problems for each player based on rating range and tags.
 
 <img width="1918" height="957" alt="Home_Page" src="https://github.com/user-attachments/assets/020a5e42-c7bd-479f-b367-15c6d2bc3fea" />
