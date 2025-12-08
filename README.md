@@ -120,12 +120,6 @@ Perfect for:
 
 ---
 
-## ❤️ 6. Attribution
-
-> **Made with ❤️ by [Vatsal Jain](https://www.linkedin.com/in/vatsaljain79/)**
-
----
-
 # 🧱 Tech Stack
 
 ### Frontend
